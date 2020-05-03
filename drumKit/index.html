@@ -3,7 +3,7 @@
   <head>
     <meta charset='UTF-8'>
     <title>js D R U M k i t</title>
-    <link rel='stylesheet' href='style.css'>
+    <link rel='stylesheet' href='styles.css'>
   </head>
   <body>
 
@@ -57,8 +57,34 @@
     <audio data-key="76" src="sounds/tink.wav"></audio>
   
     <script>
+      window.addEventListener('keydown', function(e) {
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        
+        // to add animation to the keys as they are being selected!
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        // stop the function from running, ie if not a key in the above list then we are good, no need to run it further
+        if(!audio) return;
+        
+        // so if you hit the same button again there isnt any lag
+        audio.currentTime = 0;
+        audio.play();
+
+        // attach css styling to the keys so when pressed they are animated
+        key.classList.add('playing');
+      });
+
+      // to smoothly remove button animation efficiently, listening in for transition end, much better than setTimeOut for consistency purposes 
+      const removeTransition = e => {
+        //console.log(e);
+        if(e.propertyName !== 'transform') return;
+        //console.log(e.propertyName);
+        this.classList.remove('playing');
+      }
+
+      const keys = document.querySelectorAll('.key');
+      keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
     </script>
-    
+
   </body>
 </html>
