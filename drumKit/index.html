@@ -56,35 +56,71 @@
     <audio data-key="75" src="sounds/tom.wav"></audio>
     <audio data-key="76" src="sounds/tink.wav"></audio>
   
+    
     <script>
-      window.addEventListener('keydown', function(e) {
+
+      const removeTransition = e => {
+        // if its not a transform property, skip it
+        if(e.propertyName !== 'transform') return;
+
+        // for a smoother transtion out of the animation
+        //this.classList.remove('playing');
+        e.target.classList.remove('playing');
+      }
+
+      const playSound = e => {
+        // so when specific button is hit it will play that sound
         const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-        
-        // to add animation to the keys as they are being selected!
+        // to be able to select the specific key that is triggered by user
         const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-        // stop the function from running, ie if not a key in the above list then we are good, no need to run it further
+
+        // stop the function from running if a different key from above list is triggered
         if(!audio) return;
-        
-        // so if you hit the same button again there isnt any lag
+
+        // attach css styling so when keys are pressed they are animated
+        key.classList.add('playing');
+        // rewind to start; prevents any lags when hitting button again
         audio.currentTime = 0;
         audio.play();
-
-        // attach css styling to the keys so when pressed they are animated
-        key.classList.add('playing');
-      });
-
-      // to smoothly remove button animation efficiently, listening in for transition end, much better than setTimeOut for consistency purposes 
-      const removeTransition = e => {
-        //console.log(e);
-        if(e.propertyName !== 'transform') return;
-        //console.log(e.propertyName);
-        this.classList.remove('playing');
       }
 
       const keys = document.querySelectorAll('.key');
       keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
+      window.addEventListener('keydown', playSound);
+    
     </script>
 
   </body>
 </html>
+
+
+
+
+
+<!-- window.addEventListener('keydown', function(e) {
+  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+  
+  // to add animation to the keys as they are being selected!
+  const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+  // stop the function from running, ie if not a key in the above list then we are good, no need to run it further
+  if(!audio) return;
+  
+  // so if you hit the same button again there isnt any lag
+  audio.currentTime = 0;
+  audio.play();
+
+  // attach css styling to the keys so when pressed they are animated
+  key.classList.add('playing');
+});
+
+// to smoothly remove button animation efficiently, listening in for transition end, much better than setTimeOut for consistency purposes 
+const removeTransition = e => {
+  //console.log(e);
+  if(e.propertyName !== 'transform') return;
+  //console.log(e.propertyName);
+  this.classList.remove('playing');
+}
+
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => key.addEventListener('transitionend', removeTransition)); -->
