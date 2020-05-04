@@ -1,7 +1,7 @@
 /* clock style sheet */
 
 html {
-  background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
+  background: #018DED url(https://imgix.bustle.com/uploads/image/2018/9/27/ad74b042-642b-4e04-917c-95a47bd0f140-bojack_horseman_s05e05_9m4s13056f.jpg?w=970&h=546&fit=crop&crop=faces&auto=format%2Ccompress&cs=srgb&q=70&dpr=2);
   background-size: cover;
   font-family: 'helvetica neue';
   text-align: center;
@@ -20,14 +20,14 @@ body {
 .clock {
   width: 30rem;
   height: 30rem;
-  border: 20px solid white;
+  border: 20px solid rgb(235, 154, 78);
   border-radius: 50%;
   margin: 50px auto;
   position: relative;
   padding: 2rem;
   box-shadow:
     0 0 0 4px rgba(0,0,0,0.1),
-    inset 0 0 0 3px #EFEFEF,
+    inset 0 0 0 3px rgb(245, 210, 165),
     inset 0 0 10px black,
     0 0 10px rgba(0,0,0,0.2);
 }
@@ -42,7 +42,7 @@ body {
 .hand {
   width: 50%;
   height: 6px;
-  background: black;
+  background: rgb(109, 68, 245);
   position: absolute;
   top: 50%;
   transform-origin: 100%; /* by default this is 50% --> rotates in the middle */
