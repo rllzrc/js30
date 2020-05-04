@@ -45,8 +45,9 @@ body {
   background: black;
   position: absolute;
   top: 50%;
-  transform-origin: 100%;
+  transform-origin: 100%; /* by default this is 50% --> rotates in the middle */
   transform: rotate(90deg);
+  /* to add that "ticking effect" when it transitions or moves the hand every 0.05 seconds */
   transition: all 0.05s;
   transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
