@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel='stylesheet' href='styles.css'>
     <meta charset='UTF-8'>
     <title>S C O P E D // CSS Variables && JS</title>
   </head>
@@ -19,6 +20,62 @@
     </div>
 
     <img src='https://source.unsplash.com/7bwQXzbF6KE/800x500'>
+
+    <style>
+
+      :root {
+        --base: #ffc600;
+        --spacing: 10px;
+        --blur: 10px;
+      }
+
+      img {
+        padding: var(--spacing);
+        background: var(--base);
+        filter: blur(var(--blur));
+      }
+
+      .hl {
+        color: var(--base);
+      }
+
+      body {
+        text-align: center;
+        background: #193549;
+        color: white;
+        font-family: 'helvetica neue', sans-serif;
+        font-weight: 100;
+        font-size: 50px;
+      }
     
+      .controls {
+        margin-bottom: 50px;
+      }
+    
+      input {
+        width: 100px;
+      }
+
+    </style>
+
+    <script>
+      const inputs = document.querySelectorAll('.controls input');
+
+      function handleUpdate() {
+        //console.log(this.value);
+        // this dataset -- an object that will contain all data attributes of that element data-name data-cool any data set you define will pop up, no selection or attribute any data- on an obj
+
+        // or empty string in the event that some of the elements dont have a sizing we don't want to append undefined at the end
+        const suffix = this.dataset.sizing || '';
+        //console.log(this.name);
+
+        // value will be immediately updated
+        document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+      }
+
+      inputs.forEach(input => input.addEventListener('change', handleUpdate));
+
+      inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+    </script>
   </body>
 </html>
