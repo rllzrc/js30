@@ -69,8 +69,23 @@
       const [bLast, bFirst] = b.split(', ');
       return aLast > bLast ? 1 : - 1;
     });
-
+    
     console.log(alphabetical);
+    // 8. Reduce Exercise
+    // Sum up the instances of each of these
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogostick'];
+
+    const transportation = data.reduce((acc, e) => {
+      if(!acc[e]) {
+        acc[e] = 0;
+      }
+
+      acc[e] += 1;
+      return acc;
+    }, {});
+
+    console.log(transportation);
+    
     </script>
   </body>
 </html>
