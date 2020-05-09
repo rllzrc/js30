@@ -128,14 +128,24 @@
 
   <script>
 
-    const panels = document.querySelectorAll('.panels');
+    const panels = document.querySelectorAll('.panel');
 
     const toggleOpen = () => {
       this.classList.toggle('open');
     }
 
-    /* 'listen' for a click */
-    panels.forEach
+    const toggleActive = (e) => {
+      //console.log(e.propertyName);
+      if(e.propertyName.includes('flex')) {
+        this.classList.toggle('open-active');
+      }
+    }
+
+    /* 'listen' for a click, if user clicks on that specific panel run the toggleOpen function  */
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen)); 
+
+    /* add transitionEnd event so the words for that specific panel pop up as well */
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive)); 
   </script>
 
 
